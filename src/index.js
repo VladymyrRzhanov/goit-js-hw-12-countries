@@ -1,33 +1,32 @@
 const debounce = require('lodash.debounce');
-import countryList from "./templates/country-list.hbs";
-import countryCard from "./templates/country-card.hbs";
+import callError from "./js/error";
+import countryListTpl from "./templates/country-list.hbs";
+import countryCardTpl from "./templates/country-card.hbs";
+import API from "./js/fetchCountries";
+import getRefs from "./js/refs";
 
-
-const inputCountry = document.querySelector('[data-country]');
-const outputCountry = document.querySelector('[data-output]');
-
-const fetchCountries = searchQuery => fetch(`https://restcountries.eu/rest/v2/name/${searchQuery}`).then(responsive => responsive.json()).then(country => renderCountry(country));
-
+const refs = getRefs();
 
 const renderCountry = (country) => {
     if (country.length > 2 && country.length < 10) {
-        outputCountry.innerHTML = countryList(country);
+        refs.outputCountry.innerHTML = countryListTpl(country);
         
     } else if (country.length === 1) {
-        outputCountry.innerHTML = countryCard(...country);
-
+        refs.outputCountry.innerHTML = countryCardTpl(...country);
+        
     } else {
-        outputCountry.innerHTML = 'wrong';
-    };
+        callError()
+    }
 };
 
 
-const searchCountry = e => {
-    outputCountry.innerHTML = '';
+function searchCountry(e) {
+    refs.outputCountry.innerHTML = '';
+    this.value = this.value.replace(/[^\[A-Za-zА]/g, '');
     const searchQuery = e.target.value;
     if(searchQuery.length) {
-        fetchCountries(searchQuery);
+        API.fetchCountries(searchQuery).then(renderCountry);
     };
 };
 
-inputCountry.addEventListener('input', debounce(searchCountry,500));
+refs.inputCountry.addEventListener('input', debounce(searchCountry, 500));

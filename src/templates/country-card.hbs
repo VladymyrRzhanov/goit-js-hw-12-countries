@@ -1,15 +1,15 @@
-    <h1>{{name}}</h1>
-<div>
-    <ul>
-        <li>Capital:{{capital}}</li>
-        <li>Population:{{population}}</li>
-        <li>Languages:
-        <ul>
-            {{#each languages}}
-            <li>{{name}}</li>
-            {{/each}}
-        </ul>
+<h2 class="country__name">{{name}}</h2>
+<div class="country__description">
+    <ul class="country__list">
+        <li class="country__item"><span class="country__capital">Capital: </span>{{capital}}</li>
+        <li class="country__item"><span class="country__population">Population: </span>{{population}}</li>
+        <li class="country__item"><span class="country__languages">Languages:</span>
+            <ul class="country__language">
+                {{#each languages}}
+                <li>{{name}}</li>
+                {{/each}}
+            </ul>
         </li>
     </ul>
-    <img src="{{flag}}" alt="Flag of {{name}}">
+    <img class="country__flag" src="{{flag}}" alt="Flag of {{name}}">
 </div>
