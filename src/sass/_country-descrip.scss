@@ -1,0 +1,35 @@
+.country {
+    &__name {
+        margin-bottom: 30px;
+        text-align: center;
+        font-size: 50px;
+    }
+
+    &__description {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 40px;
+    }
+
+    &__capital,
+    &__population,
+    &__languages {
+    font-weight: 700;
+    }
+
+    &__item {
+    list-style: none;
+    }
+
+    &__language {
+    padding-left: 60px;
+    }
+
+    &__flag {
+    width: 500px;
+    height: auto;
+    }
+
+}
+
