@@ -75,7 +75,7 @@ p {
   align-items: center;
   list-style: none;
 }
-.list__item__item:not(:last-child) {
+.list__item:not(:last-child) {
   margin-bottom: 20px;
 }
 
