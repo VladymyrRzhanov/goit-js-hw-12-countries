@@ -15,7 +15,7 @@ const renderCountry = (country) => {
     } else if (country.length === 1) {
 
         refs.outputCountry.innerHTML = countryCardTpl(...country);
-        
+        refs.inputCountry.value = '';
     } else {
         callError()
     }
@@ -27,7 +27,8 @@ function searchCountry(e) {
     this.value = this.value.replace(/[^\[A-Za-zА]/g, '');
     const searchQuery = e.target.value;
     if(searchQuery.length) {
-        API.fetchCountries(searchQuery).then(renderCountry).catch(callError);
+        API.fetchCountries(searchQuery).then(renderCountry);
+
     };
 };
 
