@@ -1,5 +1,8 @@
-const BASE_URL = 'https://restcountries.eu/rest/v2'
+const BASE_URL = 'https://restcountries.eu/rest/v2';
 
-const fetchCountries = searchQuery => fetch(`${BASE_URL}/name/${searchQuery}`).then(responsive => responsive.json())
+const fetchCountries = async searchQuery => {
+    const responsive = await fetch(`${BASE_URL}/name/${searchQuery}`);
+    return responsive.json();
+}
 
 export default {fetchCountries}

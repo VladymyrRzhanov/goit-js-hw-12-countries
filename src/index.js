@@ -8,17 +8,17 @@ import './sass/main.scss';
 
 const refs = getRefs();
 
-const renderCountry = (country) => {
+const renderCountry = async (country) => {
     if (country.length >= 2 && country.length <= 10) {
-        refs.outputCountry.innerHTML = countryListTpl(country);
+        refs.outputCountry.innerHTML = await countryListTpl(country);
         
     } else if (country.length === 1) {
 
-        refs.outputCountry.innerHTML = countryCardTpl(...country);
+        refs.outputCountry.innerHTML = await countryCardTpl(...country);
         refs.inputCountry.value = '';
     } else {
-        callError()
-    }
+        callError();
+    };
 };
 
 
